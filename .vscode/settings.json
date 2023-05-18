@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "python.defaultInterpreterPath": "Your_venv_path/bin/python"
+    },
+    "python.formatting.provider": "yapf",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
+}
