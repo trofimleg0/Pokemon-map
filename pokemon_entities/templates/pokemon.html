@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -13,7 +13,7 @@
   <div class="container">
     <ul class="nav" style="background-color: #e3f2fd;">
       <li class="nav-item">
-        <a class="nav-link active" href="{% url "mainpage" %}">На главную</a>
+        <a class="nav-link active" href="{% url "mainpage" %}">To the Home page</a>
       </li>
     </ul>
     <div class="d-flex mt-5 row">
@@ -21,12 +21,12 @@
         <img src="{{pokemon.img_url}}" style="height:200px; width:200px">
       </div>
       <div class="m-2 ml-4 col-11 col-sm-8 col-lg-8 col-xl-8">
-        <h1>{{pokemon.title_ru}}</h1>
-        <p><b>{{pokemon.title_ru}}</b> (анг. {{pokemon.title_en}}, яп. {{pokemon.title_jp}}) — {{pokemon.description}}</p>
+        <h1>{{pokemon.title_en}}</h1>
+        <p><b>{{pokemon.title_en}}</b> (rus. {{pokemon.title_ru}}, jap. {{pokemon.title_jp}}) — {{pokemon.description}}</p>
         <hr>
         <div class="mt-4">
           {% if pokemon.next_evolution or pokemon.previous_evolution %}
-            <h4 class="mb-0">Эволюции покемона</h4>
+            <h4 class="mb-0">Pokemon Evolutions</h4>
             <div class="row">
               {% if pokemon.previous_evolution %}
                 <div class="col-5 clearfix p-2 m-2">
@@ -38,7 +38,7 @@
                       </div>
                     </a>
                   </div>
-                  <h6 class="d-flex justify-content-center m-2">Из кого эволюционировал</h6>
+                  <h6 class="d-flex justify-content-center m-2">Previous evolution</h6>
                 </div>
               {% endif %}
               {% if pokemon.next_evolution %}
@@ -51,7 +51,7 @@
                       </div>
                     </a>
                   </div>
-                  <h6 class="d-flex justify-content-center m-2">В кого эволюционирует</h6>
+                  <h6 class="d-flex justify-content-center m-2">Next evolution</h6>
                 </div>
               {% endif %}
             </div>
@@ -60,11 +60,11 @@
         {% if pokemon.element_type %}
           <hr>
           <div class="mt-4">
-            <h4>Стихии покемона</h4>
+            <h4>Pokemon Elements</h4>
             {% for element in pokemon.element_type%}
               <div>
                 <img class="pull-left mr-2 float-left" style="height:20px;width:20px;" src="{{element.img}}">
-                <p>{{element.title}}, силён против: {{element.strong_against|join:", "}}</p>
+                <p>{{element.title}}, advantage against: {{element.strong_against|join:", "}}</p>
               </div>
             {% endfor %}
           </div>
@@ -73,7 +73,7 @@
     </div>
 
 
-    <h1 class="mt-5 mb-2">Карта {{pokemon.title}} в Москве</h1>
+    <h1 class="mt-5 mb-2">{{pokemon.title_en}} map in Moscow</h1>
     <div class="mb-5">
       {{map|safe}}  
     </div>

@@ -53,7 +53,7 @@ def show_all_pokemons(request):
                 "img_url": request.build_absolute_uri(
                     pokemon.image.url if pokemon.image else ""
                 ),
-                "title_ru": pokemon.title_ru,
+                "title_en": pokemon.title_en,
             }
         )
 
@@ -83,7 +83,7 @@ def show_pokemon(request, pokemon_id):
                 if pokemon.previous_evolution.image
                 else ""
             ),
-            "title_ru": pokemon.previous_evolution.title_ru,
+            "title_en": pokemon.previous_evolution.title_en,
         }
 
     for evolved_pokemon in pokemon.next_evolutions.all():
@@ -92,7 +92,7 @@ def show_pokemon(request, pokemon_id):
             "img_url": request.build_absolute_uri(
                 evolved_pokemon.image.url if evolved_pokemon.image else ""
             ),
-            "title_ru": evolved_pokemon.title_ru,
+            "title_en": evolved_pokemon.title_en,
         }
 
     pokemon_params = {
@@ -100,10 +100,10 @@ def show_pokemon(request, pokemon_id):
         "img_url": request.build_absolute_uri(
             pokemon.image.url if pokemon.image else ""
         ),
+         "title_en": pokemon.title_en,
         "title_ru": pokemon.title_ru,
-        "description": pokemon.description,
-        "title_en": pokemon.title_en,
         "title_jp": pokemon.title_jp,
+        "description": pokemon.description,
         "previous_evolution": previous_evolution,
         "next_evolution": next_evolution,
     }
