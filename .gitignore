@@ -5,6 +5,9 @@
 .AppleDouble
 .LSOverride
 
+### IDE ###
+.vscode/
+
 # Icon must end with two \r
 Icon
 
@@ -48,6 +51,8 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+*.whl
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

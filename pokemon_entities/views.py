@@ -95,7 +95,7 @@ def show_pokemon(request, pokemon_id):
             "title_ru": evolved_pokemon.title_ru,
         }
 
-    pokemon_parameters = {
+    pokemon_params = {
         "pokemon_id": pokemon.id,
         "img_url": request.build_absolute_uri(
             pokemon.image.url if pokemon.image else ""
@@ -127,6 +127,6 @@ def show_pokemon(request, pokemon_id):
         "pokemon.html",
         context={
             "map": folium_map._repr_html_(),
-            "pokemon": pokemon_parameters,
+            "pokemon": pokemon_params,
         },
     )
