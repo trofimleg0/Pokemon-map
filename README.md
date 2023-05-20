@@ -32,7 +32,7 @@ python3 manage.py runserver
 
 ### Environment variables
 
-Some of the project settings are taken from the environment variables. To identify them, create a `.env` file next to `manage.py ` and write the data there in this format: `VARIABLE=value'.
+Some of the project settings are taken from the environment variables. To identify them, create a `.env` file next to `manage.py` and write the data there in this format: `VARIABLE=value'.
 
 2 variables are available:
 - `DEBUG` — debug mode. Set True to see debugging information in case of an error.
