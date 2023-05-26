@@ -1,10 +1,10 @@
 import folium
-import pytz
+import urllib.parse
 
 from .models import Pokemon, PokemonEntity
 from django.utils import timezone
-from django.http import HttpResponseNotFound
 from django.shortcuts import render
+
 
 MOSCOW_CENTER = [55.751244, 37.618423]
 DEFAULT_IMAGE_URL = (
@@ -28,7 +28,7 @@ def add_pokemon(folium_map, lat, lon, image_url=DEFAULT_IMAGE_URL):
 
 
 def show_all_pokemons(request):
-    current_time = timezone.localtime(timezone=pytz.timezone("Europe/Prague"))
+    current_time = timezone.localtime()
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
     pokemons_entities = PokemonEntity.objects.filter(
@@ -50,9 +50,7 @@ def show_all_pokemons(request):
         pokemons_on_page.append(
             {
                 "pokemon_id": pokemon.id,
-                "img_url": request.build_absolute_uri(
-                    pokemon.image.url if pokemon.image else ""
-                ),
+                "img_url": request.build_absolute_uri(pokemon.image.url),
                 "title_en": pokemon.title_en,
             }
         )
@@ -68,7 +66,7 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    current_time = timezone.localtime(timezone=pytz.timezone("Europe/Prague"))
+    current_time = timezone.localtime()
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
 
     pokemon = Pokemon.objects.get(id=pokemon_id)
@@ -80,8 +78,6 @@ def show_pokemon(request, pokemon_id):
             "pokemon_id": pokemon.previous_evolution.id,
             "img_url": request.build_absolute_uri(
                 pokemon.previous_evolution.image.url
-                if pokemon.previous_evolution.image
-                else ""
             ),
             "title_en": pokemon.previous_evolution.title_en,
         }
@@ -89,9 +85,7 @@ def show_pokemon(request, pokemon_id):
     for evolved_pokemon in pokemon.next_evolutions.all():
         next_evolution = {
             "pokemon_id": evolved_pokemon.id,
-            "img_url": request.build_absolute_uri(
-                evolved_pokemon.image.url if evolved_pokemon.image else ""
-            ),
+            "img_url": request.build_absolute_uri(evolved_pokemon.image.url),
             "title_en": evolved_pokemon.title_en,
         }
 
@@ -100,7 +94,7 @@ def show_pokemon(request, pokemon_id):
         "img_url": request.build_absolute_uri(
             pokemon.image.url if pokemon.image else ""
         ),
-         "title_en": pokemon.title_en,
+        "title_en": pokemon.title_en,
         "title_ru": pokemon.title_ru,
         "title_jp": pokemon.title_jp,
         "description": pokemon.description,

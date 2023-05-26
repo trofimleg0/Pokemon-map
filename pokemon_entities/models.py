@@ -10,9 +10,7 @@ class Pokemon(models.Model):
         max_length=20, verbose_name="Name in Japanese", blank=True
     )
     description = models.TextField(verbose_name="Description", blank=True)
-    image = models.ImageField(
-        upload_to="", verbose_name="Image", blank=True
-    )
+    image = models.ImageField(upload_to="", verbose_name="Image", blank=True)
     previous_evolution = models.ForeignKey(
         "Pokemon",
         on_delete=models.CASCADE,
@@ -39,10 +37,10 @@ class PokemonEntity(models.Model):
         verbose_name="Time and date of disappearance", null=True, blank=True
     )
     level = models.IntegerField(verbose_name="Level", null=True, blank=True)
-    health = models.IntegerField(
-        verbose_name="Health", null=True, blank=True
+    health = models.IntegerField(verbose_name="Health", null=True, blank=True)
+    strength = models.IntegerField(
+        verbose_name="Strength", null=True, blank=True
     )
-    strength = models.IntegerField(verbose_name="Strength", null=True, blank=True)
     defence = models.IntegerField(
         verbose_name="Defence", null=True, blank=True
     )
