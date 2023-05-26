@@ -1,5 +1,4 @@
 import folium
-import urllib.parse
 
 from .models import Pokemon, PokemonEntity
 from django.utils import timezone
@@ -91,9 +90,7 @@ def show_pokemon(request, pokemon_id):
 
     pokemon_params = {
         "pokemon_id": pokemon.id,
-        "img_url": request.build_absolute_uri(
-            pokemon.image.url if pokemon.image else ""
-        ),
+        "img_url": request.build_absolute_uri(pokemon.image.url),
         "title_en": pokemon.title_en,
         "title_ru": pokemon.title_ru,
         "title_jp": pokemon.title_jp,
